@@ -24,7 +24,7 @@ export default function ClassroomPrepare() {
   const [allPassed, setAllPassed] = useState(false)
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = []
+    const timers: ReturnType<typeof setTimeout>[] = []
 
     devices.forEach((_, idx) => {
       const startDelay = idx * 1500
@@ -44,7 +44,7 @@ export default function ClassroomPrepare() {
           }
           setDevices((prev) => prev.map((d, i) => i === idx ? { ...d, progress: Math.min(progress, 100) } : d))
         }, 200)
-        timers.push(interval as unknown as NodeJS.Timeout)
+        timers.push(interval as ReturnType<typeof setTimeout>)
       }, startDelay))
     })
 
